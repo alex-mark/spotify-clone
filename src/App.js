@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import SpotifyWebApi from "spotify-web-api-js";
 import "./App.css";
 import Login from "./components/Login";
@@ -9,8 +9,7 @@ import { useStateValue } from "./StateProvider";
 const spotify = new SpotifyWebApi();
 
 function App() {
-  const [token, setToken] = useState(null);
-  const [{ user }, dispatch] = useStateValue();
+  const [{ user, token }, dispatch] = useStateValue();
 
   useEffect(() => {
     const hash = getTokenFromUrl();
@@ -20,9 +19,8 @@ function App() {
     if (_token) {
       dispatch({
         type: "SET_TOKEN",
-        token: token,
+        token: _token,
       });
-      setToken(_token);
 
       spotify.setAccessToken(_token);
 
@@ -35,7 +33,7 @@ function App() {
     }
   }, []);
 
-  console.log("🙋‍♂️ from state", user);
+  console.log("🙋‍♂️ from state!", user);
 
   return <div className="app">{token ? <Player /> : <Login />}</div>;
 }

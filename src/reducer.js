@@ -1,7 +1,8 @@
 export const initialState = {
   user: null,
   // remove after finished development
-  token: process.env.REACT_APP_SPOTIFY_TOKEN || null,
+  // token: process.env.REACT_APP_SPOTIFY_TOKEN || null,
+  // token: null,
   playlists: [],
   playing: false,
   item: null,
@@ -21,6 +22,12 @@ const reducer = (state, action) => {
       return {
         ...state,
         token: action.token,
+      };
+
+    case "SET_PLAYLISTS":
+      return {
+        ...state,
+        playlists: action.playlists,
       };
 
     default:

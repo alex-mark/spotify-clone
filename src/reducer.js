@@ -1,7 +1,7 @@
 export const initialState = {
   user: null,
   // remove after finished development
-  // token: process.env.REACT_APP_SPOTIFY_TOKEN || null,
+  token: process.env.REACT_APP_SPOTIFY_TOKEN || null,
   // token: null,
   playlists: [],
   playing: false,

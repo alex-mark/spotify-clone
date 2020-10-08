@@ -35,7 +35,11 @@ function App() {
 
   console.log("🙋‍♂️ from state!", user);
 
-  return <div className="app">{token ? <Player /> : <Login />}</div>;
+  return (
+    <div className="app">
+      {token ? <Player spotify={spotify} /> : <Login />}
+    </div>
+  );
 }
 
 export default App;

@@ -15,19 +15,19 @@ import { useStateValue } from "../StateProvider";
 function Footer({ spotify }) {
   const [{ item, playing }, dispatch] = useStateValue();
 
-  // useEffect(() => {
-  //   spotify.getMyCurrentPlaybackState().then((res) => {
-  //     dispatch({
-  //       type: "SET_PLAYING",
-  //       playing: res.is_playing,
-  //     });
+  useEffect(() => {
+    spotify.getMyCurrentPlaybackState().then((res) => {
+      dispatch({
+        type: "SET_PLAYING",
+        playing: res.is_playing,
+      });
 
-  //     dispatch({
-  //       type: "SET_ITEM",
-  //       item: res.item,
-  //     });
-  //   });
-  // }, [spotify]);
+      dispatch({
+        type: "SET_ITEM",
+        item: res.item,
+      });
+    });
+  }, [spotify]);
 
   const handlePlayPause = () => {
     if (playing) {
@@ -47,7 +47,7 @@ function Footer({ spotify }) {
 
   const skipNext = () => {
     spotify.skipToNext();
-    spotify.getMyPlayingTrack().then((res) => {
+    spotify.getMyCurrentPlayingTrack().then((res) => {
       dispatch({
         type: "SET_ITEM",
         item: res.item,
@@ -61,7 +61,7 @@ function Footer({ spotify }) {
 
   const skipPrevious = () => {
     spotify.skipToPrevious();
-    spotify.getMyPlayingTrack().then((res) => {
+    spotify.getMyCurrentPlayingTrack().then((res) => {
       dispatch({
         type: "SET_ITEM",
         item: res.item,

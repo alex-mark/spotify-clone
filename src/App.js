@@ -17,12 +17,12 @@ function App() {
     const _token = hash.access_token;
 
     if (_token) {
+      spotify.setAccessToken(_token);
+
       dispatch({
         type: "SET_TOKEN",
         token: _token,
       });
-
-      spotify.setAccessToken(_token);
 
       spotify.getMe().then((user) => {
         dispatch({
@@ -45,7 +45,7 @@ function App() {
         });
       });
     }
-  }, []);
+  }, [token, dispatch]);
 
   console.log("🙋‍♂️ from state!", user);
 

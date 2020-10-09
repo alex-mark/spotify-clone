@@ -2,6 +2,7 @@
 
 - React JS
 - React Context API
+- React Hooks
 - Material UI
 - Spotify API
 

@@ -1,7 +1,7 @@
 export const initialState = {
   user: null,
   // remove after finished development
-  token: process.env.REACT_APP_SPOTIFY_TOKEN || null,
+  // token: process.env.REACT_APP_SPOTIFY_TOKEN || null,
   // token: null,
   playlists: [],
   playing: false,
@@ -28,6 +28,12 @@ const reducer = (state, action) => {
       return {
         ...state,
         playlists: action.playlists,
+      };
+
+    case "SET_DISCOVER_WEEKLY":
+      return {
+        ...state,
+        discover_weekly: action.discover_weekly,
       };
 
     default:

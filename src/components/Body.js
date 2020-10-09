@@ -30,8 +30,8 @@ function Body({ spotify }) {
           <MoreHorizIcon />
         </div>
 
-        {discover_weekly?.tracks.items.map((item) => (
-          <SongRow track={item.track} />
+        {discover_weekly?.tracks.items.map((item, index) => (
+          <SongRow key={index} track={item.track} />
         ))}
       </div>
     </div>

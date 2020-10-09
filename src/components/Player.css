@@ -1,3 +1,7 @@
+.player {
+  min-height: 0;
+}
+
 .player__body {
   display: flex;
 }

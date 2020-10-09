@@ -1,3 +1,10 @@
+# Spotify Clone
+
+- React JS
+- React Context API
+- Material UI
+- Spotify API
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

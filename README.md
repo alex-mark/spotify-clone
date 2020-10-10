@@ -2,7 +2,7 @@
 
 ## [Try it](https://spotify-clone-6de4d.web.app/)
 
-You will get you public playlists, to control you devices you need Spotify Premium.
+You will get you public playlists & currently playing track, to control you devices you need Spotify Premium.
 
 ### Stack
 

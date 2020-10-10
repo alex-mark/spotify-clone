@@ -1,5 +1,9 @@
 # Spotify Clone
 
+[Try it](https://spotify-clone-6de4d.web.app/)
+
+You will get you public playlists, to control you devices you need Spotify Premium.
+
 - React JS
 - React Context API
 - React Hooks

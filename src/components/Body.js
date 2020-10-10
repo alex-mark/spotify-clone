@@ -10,6 +10,60 @@ import { useStateValue } from "../StateProvider";
 function Body({ spotify }) {
   const [{ discover_weekly }, dispatch] = useStateValue();
 
+  const playPlaylist = () => {
+    spotify
+      .play({
+        context_uri: `spotify:playlist:${discover_weekly.id}`,
+      })
+      .then(() => {
+        spotify.getMyCurrentPlayingTrack().then((r) => {
+          dispatch({
+            type: "SET_ITEM",
+            item: r.item,
+          });
+          dispatch({
+            type: "SET_PLAYING",
+            item: true,
+          });
+        });
+      })
+      .catch((err) => {
+        if (err.status === 403) {
+          alert("You need Spotify Premium for this");
+        } else {
+          alert(err.response);
+          console.log(err);
+        }
+      });
+  };
+
+  const playSong = (id) => {
+    spotify
+      .play({
+        uris: [`spotify:track:${id}`],
+      })
+      .then(() => {
+        spotify.getMyCurrentPlayingTrack().then((r) => {
+          dispatch({
+            type: "SET_ITEM",
+            item: r.item,
+          });
+          dispatch({
+            type: "SET_PLAYING",
+            item: true,
+          });
+        });
+      })
+      .catch((err) => {
+        if (err.status === 403) {
+          alert("You need Spotify Premium for this");
+        } else {
+          alert(err.response);
+          console.log(err);
+        }
+      });
+  };
+
   return (
     <div className="body">
       <Header spotify={spotify} />
@@ -25,13 +79,16 @@ function Body({ spotify }) {
 
       <div className="body__songs">
         <div className="body__icons">
-          <PlayCircleFilledIcon className="body__shuffle" />
+          <PlayCircleFilledIcon
+            className="body__shuffle"
+            onClick={playPlaylist}
+          />
           <FavoriteIcon fontSize="large" />
           <MoreHorizIcon />
         </div>
 
         {discover_weekly?.tracks.items.map((item, index) => (
-          <SongRow key={index} track={item.track} />
+          <SongRow key={index} track={item.track} playSong={playSong} />
         ))}
       </div>
     </div>

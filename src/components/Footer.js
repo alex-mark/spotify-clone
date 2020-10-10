@@ -31,22 +31,51 @@ function Footer({ spotify }) {
 
   const handlePlayPause = () => {
     if (playing) {
-      spotify.pause();
-      dispatch({
-        type: "SET_PLAYING",
-        playing: false,
-      });
+      spotify
+        .pause()
+        .then(() => {
+          dispatch({
+            type: "SET_PLAYING",
+            playing: false,
+          });
+        })
+        .catch((err) => {
+          if (err.status === 403) {
+            alert("You need Spotify Premium for this");
+          } else {
+            alert(err.response);
+            console.log(err);
+          }
+        });
     } else {
-      spotify.play();
-      dispatch({
-        type: "SET_PLAYING",
-        playing: true,
-      });
+      spotify
+        .play()
+        .then(() => {
+          dispatch({
+            type: "SET_PLAYING",
+            playing: true,
+          });
+        })
+        .catch((err) => {
+          if (err.status === 403) {
+            alert("You need Spotify Premium for this");
+          } else {
+            alert(err.response);
+            console.log(err);
+          }
+        });
     }
   };
 
   const skipNext = () => {
-    spotify.skipToNext();
+    spotify.skipToNext().catch((err) => {
+      if (err.status === 403) {
+        alert("You need Spotify Premium for this");
+      } else {
+        alert(err.response);
+        console.log(err);
+      }
+    });
     spotify.getMyCurrentPlayingTrack().then((res) => {
       dispatch({
         type: "SET_ITEM",
@@ -60,7 +89,14 @@ function Footer({ spotify }) {
   };
 
   const skipPrevious = () => {
-    spotify.skipToPrevious();
+    spotify.skipToPrevious().catch((err) => {
+      if (err.status === 403) {
+        alert("You need Spotify Premium for this");
+      } else {
+        alert(err.response);
+        console.log(err);
+      }
+    });
     spotify.getMyCurrentPlayingTrack().then((res) => {
       dispatch({
         type: "SET_ITEM",

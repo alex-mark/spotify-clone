@@ -38,7 +38,7 @@ function App() {
         });
       });
 
-      spotify.getPlaylist("37i9dQZF1E37wYdGefw1fj").then((response) => {
+      spotify.getPlaylist("37i9dQZEVXcQ9COmYvdajy").then((response) => {
         dispatch({
           type: "SET_DISCOVER_WEEKLY",
           discover_weekly: response,
@@ -47,7 +47,7 @@ function App() {
     }
   }, [token, dispatch]);
 
-  console.log("🙋‍♂️ from state!", user);
+  // console.log("🙋‍♂️ from state!", user);
 
   return (
     <div className="app">
